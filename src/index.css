@@ -13,6 +13,7 @@
   --color-default: #11698e;
   --color-secondary: #bf8dc9;
 
+  --size-200: 0.25rem;
   --size-300: 0.5rem;
   --size-400: 0.75rem;
   --size-500: 1rem;
@@ -47,6 +48,51 @@
 
 .gap-small {
   gap: var(--size-300);
+}
+
+.long-form {
+  margin-inline: var(--size-300);
+}
+
+.long-form > *:not(:last-child) {
+  margin-bottom: var(--size-300);
+}
+
+.input {
+  width: 100%;
+  padding: var(--size-200) var(--size-300);
+  outline-color: var(--color-default);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-200);
+  color: white;
+  padding-block: var(--size-300);
+  border: none;
+  border-radius: var(--size-800);
+  cursor: pointer;
+  transition: background-color 300ms;
+  width: 100%;
+}
+
+.button[data-type='add'] {
+  background-color: var(--color-default);
+}
+
+.button[data-type='add']:is(:hover, :focus-visible) {
+  --color-default-darken: #0d5371;
+  background-color: var(--color-default-darken);
+}
+
+.button[data-type='delete'] {
+  background-color: var(--color-delete);
+}
+.button[data-type='delete']:is(:hover, :focus-visible) {
+  --color-delete-darken: #972c25;
+  background-color: var(--color-default-darken);
 }
 
 *,

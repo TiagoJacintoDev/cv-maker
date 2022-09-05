@@ -1,0 +1,16 @@
+.openFormButton {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--color-default);
+  background-color: white;
+  width: 100%;
+  border: none;
+  padding-block: var(--size-400);
+  font-size: var(--fs-600);
+}
+
+.card {
+  margin-inline: auto;
+  width: 95%;
+}
