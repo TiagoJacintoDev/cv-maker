@@ -1,7 +1,6 @@
 import { upperFirst, split, camelCase } from 'lodash';
 import { MdOutlineLibraryAdd } from 'react-icons/md';
 import { VscTrash } from 'react-icons/vsc';
-import { forms } from '../data/typeOfForms';
 
 export default function Form({ formData, formName, setFormData }) {
   console.log(formData);
@@ -14,8 +13,8 @@ export default function Form({ formData, formName, setFormData }) {
         'occupation',
         'phone',
         'email',
-        'linkedin',
         'github',
+        'linkedin',
       ],
     },
     {

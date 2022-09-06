@@ -1,20 +1,11 @@
 import { VscClose } from 'react-icons/vsc';
 import { useState } from 'react';
-import CSS from './Skills.module.css';
+import CSS from './DisplaySections.module.css';
 
-export default function Skills({ formData, setFormData }) {
+export default function Skills({ formData, removeForm }) {
   const { skills } = formData;
 
   const [canRemove, setCanRemove] = useState(false);
-
-  function removeForm(e) {
-    setFormData(oldFormData => ({
-      ...oldFormData,
-      [e.target.name]: oldFormData[e.target.name].filter(
-        (form, index) => index === 0 || index !== +e.target.dataset.key
-      ),
-    }));
-  }
 
   return (
     <div className='display-section'>
@@ -31,7 +22,7 @@ export default function Skills({ formData, setFormData }) {
                 <button
                   onClick={removeForm}
                   className={`${CSS.button} flex align-center gap-small`}
-                  name='skills'
+                  data-name='skills'
                   data-key={index}
                 >
                   {skill.skill}

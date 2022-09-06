@@ -7,6 +7,10 @@
   border: none;
 }
 
+.button:is(:hover, :focus-visible) {
+  background-color: var(--color-default-darken);
+}
+
 .button[data-not-clickable] {
   cursor: default;
 }
