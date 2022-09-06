@@ -21,7 +21,7 @@ export default function OpenForm({ formData, setFormData }) {
 
   return (
     <div className='container'>
-      <div className={CSS.card}>
+      <div className='card'>
         {forms.map(form => (
           <>
             <button

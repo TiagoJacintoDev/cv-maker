@@ -78,7 +78,7 @@ export default function Form({ formData, formName, setFormData }) {
     }));
   }
 
-  function removeAllForms(e) {
+  function removeAllForms() {
     setFormData(oldFormData => ({
       ...oldFormData,
       [currentForm.name]: [{}],

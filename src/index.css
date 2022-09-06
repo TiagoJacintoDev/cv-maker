@@ -1,7 +1,8 @@
 :root {
   --fs-500: 1rem;
   --fs-600: 1.25rem;
-  --fs-700: 2rem;
+  --fs-700: 1.5rem;
+  --fs-800: 2rem;
 
   --fw-regular: 400;
   --fw-semi-bold: 600;
@@ -22,6 +23,34 @@
   --size-800: 4rem;
 }
 
+.fs-500 {
+  font-size: var(--fs-500);
+}
+
+.fs-600 {
+  font-size: var(--fs-600);
+}
+
+.fs-700 {
+  font-size: var(--fs-700);
+}
+
+.fs-800 {
+  font-size: var(--fs-800);
+}
+
+.fw-regular {
+  font-weight: var(--fw-regular);
+}
+
+.fw-semi-bold {
+  font-weight: var(--fw-semi-bold);
+}
+
+.fw-bold {
+  font-weight: var(--fw-bold);
+}
+
 .container {
   width: 90vw;
   margin-inline: auto;
@@ -29,6 +58,15 @@
 
 .flex {
   display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .center-items {
@@ -92,7 +130,44 @@
 }
 .button[data-type='delete']:is(:hover, :focus-visible) {
   --color-delete-darken: #972c25;
-  background-color: var(--color-default-darken);
+  background-color: var(--color-delete-darken);
+}
+
+.card {
+  margin-inline: auto;
+  width: 95%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.display-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--size-700) var(--size-400);
+}
+
+.display-section:not(:last-of-type) {
+  border-bottom: 1px solid var(--color-black);
+}
+
+.display-section p {
+  display: flex;
+  align-items: center;
+  gap: var(--size-200);
+}
+
+.display-info {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--size-500);
+}
+
+.list {
+  margin-top: var(--size-400);
+  margin-left: var(--size-600);
 }
 
 *,

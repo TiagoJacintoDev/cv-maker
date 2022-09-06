@@ -9,8 +9,3 @@
   padding-block: var(--size-400);
   font-size: var(--fs-600);
 }
-
-.card {
-  margin-inline: auto;
-  width: 95%;
-}

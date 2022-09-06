@@ -1,0 +1,25 @@
+.button {
+  cursor: pointer;
+  color: var(--color-white);
+  background-color: var(--color-default);
+  border-radius: var(--size-200);
+  padding: var(--size-200) var(--size-400);
+  border: none;
+}
+
+.button[data-not-clickable] {
+  cursor: default;
+}
+
+.svg {
+  transition: width 400ms;
+  pointer-events: none;
+}
+
+.svg[data-visible='false'] {
+  width: 0;
+}
+
+.svg[data-visible='true'] {
+  width: 20px;
+}
