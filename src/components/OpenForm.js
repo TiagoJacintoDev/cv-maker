@@ -21,9 +21,9 @@ export default function OpenForm({ formData, setFormData }) {
 
   return (
     <div className='container'>
-      <div className='card'>
+      <div className='card flex-dsk space-between-dsk'>
         {forms.map(form => (
-          <>
+          <div className='flex-column flex-1'>
             <button
               className={CSS.openFormButton}
               data-name={form.name}
@@ -44,7 +44,7 @@ export default function OpenForm({ formData, setFormData }) {
                 setFormData={setFormData}
               />
             )}
-          </>
+          </div>
         ))}
       </div>
     </div>

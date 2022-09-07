@@ -6,6 +6,6 @@
   color: var(--color-default);
   background-color: white;
   border: none;
-  padding-block: var(--size-400);
+  padding-block: var(--size-500);
   font-size: var(--fs-600);
 }

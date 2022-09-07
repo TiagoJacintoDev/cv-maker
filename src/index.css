@@ -53,6 +53,15 @@
   font-weight: var(--fw-bold);
 }
 
+@media (min-width: 50em) {
+  .flex-dsk {
+    display: flex;
+  }
+  .space-between-dsk {
+    justify-content: space-between;
+  }
+}
+
 .container {
   width: 90vw;
   margin-inline: auto;
@@ -60,6 +69,10 @@
 
 .flex {
   display: flex;
+}
+
+.flex-1 {
+  flex: 1;
 }
 
 .flex-column {

@@ -6,7 +6,13 @@ export default function Experience({ formData, formatLine, removeForm }) {
   const [canRemove, setCanRemove] = useState(false);
 
   const { role, company, city, state, accomplishment, to, from } =
-    experience[experience[1] ? 1 : 0];
+    experience[experience[1] && !firstObjectHasValues() ? 1 : 0];
+
+  function firstObjectHasValues() {
+    return experience.some(
+      (exp, index) => index === 0 && Object.values(exp).length > 0
+    );
+  }
 
   return (
     <div className='display-section'>

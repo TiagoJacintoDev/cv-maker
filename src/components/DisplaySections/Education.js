@@ -5,7 +5,13 @@ export default function Education({ formData, formatLine, removeForm }) {
   const [canRemove, setCanRemove] = useState(false);
   const { education } = formData;
   const { degree, schoolName, city, state, achievements, from, to } =
-    education[education[1] ? 1 : 0];
+    education[education[1] && !firstObjectHasValues() ? 1 : 0];
+
+  function firstObjectHasValues() {
+    return education.some(
+      (edu, index) => index === 0 && Object.values(edu).length > 0
+    );
+  }
 
   return (
     <div className='display-section'>

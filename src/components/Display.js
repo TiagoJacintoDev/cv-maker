@@ -19,7 +19,11 @@ export const Display = forwardRef(({ formData, setFormData }, ref) => {
   }
 
   return (
-    <div ref={ref} className='container'>
+    <div
+      ref={ref}
+      className='container'
+      style={{ marginTop: 'var(--size-600)' }}
+    >
       <div className='card'>
         <General formData={formData} />
         <Experience

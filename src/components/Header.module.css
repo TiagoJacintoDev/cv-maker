@@ -1,5 +1,5 @@
 .header {
-  margin-block: var(--size-400) var(--size-800);
+  margin-block: var(--size-400) var(--size-700);
   padding: var(--size-700);
   background-color: var(--color-default);
   border-radius: var(--size-300);
