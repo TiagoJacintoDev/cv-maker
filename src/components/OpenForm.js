@@ -30,9 +30,9 @@ export default function OpenForm({ formData, setFormData }) {
               onClick={switchFormOpenState}
             >
               {formsOpened.includes(form.name) ? (
-                <MdArrowDropDown size={30} />
+                <MdArrowDropDown className='svg' size={30} />
               ) : (
-                <MdArrowRight size={30} />
+                <MdArrowRight className='svg' size={30} />
               )}
               {upperFirst(form.name)}
               {form.icon}

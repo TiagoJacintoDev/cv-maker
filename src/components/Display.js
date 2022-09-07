@@ -1,9 +1,10 @@
-import Education from './Display/Education';
-import Experience from './Display/Experience';
-import General from './Display/General';
-import Skills from './Display/Skills';
+import { forwardRef } from 'react';
+import Education from './DisplaySections/Education';
+import Experience from './DisplaySections/Experience';
+import General from './DisplaySections/General';
+import Skills from './DisplaySections/Skills';
 
-export default function Display({ formData, setFormData }) {
+export const Display = forwardRef(({ formData, setFormData }, ref) => {
   function removeForm(e) {
     setFormData(oldFormData => ({
       ...oldFormData,
@@ -18,7 +19,7 @@ export default function Display({ formData, setFormData }) {
   }
 
   return (
-    <div className='container'>
+    <div ref={ref} className='container'>
       <div className='card'>
         <General formData={formData} />
         <Experience
@@ -35,4 +36,4 @@ export default function Display({ formData, setFormData }) {
       </div>
     </div>
   );
-}
+});

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
-import CSS from './DisplaySections.module.css';
 
 export default function Experience({ formData, formatLine, removeForm }) {
   const { experience } = formData;
@@ -41,7 +40,7 @@ export default function Experience({ formData, formatLine, removeForm }) {
                 {Object.values(exp).map((Exp, index) =>
                   index !== 0 ? formatLine(Exp) : Exp
                 )}
-                <VscClose className={CSS.svg} data-visible={canRemove} />
+                <VscClose className='svg' data-visible={canRemove} />
               </li>
             )
         )}

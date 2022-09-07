@@ -10,18 +10,18 @@ const IconStyle = {
 export const forms = [
   {
     name: 'general',
-    icon: <AiOutlineInfoCircle style={IconStyle} />,
+    icon: <AiOutlineInfoCircle className='svg' style={IconStyle} />,
   },
   {
     name: 'experience',
-    icon: <BsBriefcase style={IconStyle} />,
+    icon: <BsBriefcase className='svg' style={IconStyle} />,
   },
   {
     name: 'skills',
-    icon: <VscTools style={IconStyle} />,
+    icon: <VscTools className='svg' style={IconStyle} />,
   },
   {
     name: 'education',
-    icon: <FaGraduationCap style={IconStyle} />,
+    icon: <FaGraduationCap className='svg' style={IconStyle} />,
   },
 ];

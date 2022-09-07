@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { VscClose } from 'react-icons/vsc';
-import CSS from './DisplaySections.module.css';
 
 export default function Education({ formData, formatLine, removeForm }) {
   const [canRemove, setCanRemove] = useState(false);
@@ -40,7 +39,7 @@ export default function Education({ formData, formatLine, removeForm }) {
                 {Object.values(edu).map((Edu, index) =>
                   index !== 0 ? formatLine(Edu) : Edu
                 )}
-                <VscClose className={CSS.svg} data-visible={canRemove} />
+                <VscClose className='svg' data-visible={canRemove} />
               </li>
             )
         )}

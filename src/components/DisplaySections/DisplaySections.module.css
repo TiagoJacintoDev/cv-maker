@@ -14,16 +14,3 @@
 .button[data-not-clickable] {
   cursor: default;
 }
-
-.svg {
-  transition: width 400ms;
-  pointer-events: none;
-}
-
-.svg[data-visible='false'] {
-  width: 0;
-}
-
-.svg[data-visible='true'] {
-  width: 20px;
-}

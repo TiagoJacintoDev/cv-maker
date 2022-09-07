@@ -184,6 +184,40 @@ button {
   content: '•';
 }
 
+.svg {
+  transition: width 400ms;
+  pointer-events: none;
+}
+
+.svg[data-visible='false'] {
+  width: 0;
+}
+
+.svg[data-visible='true'] {
+  width: 20px;
+}
+
+.print-button {
+  cursor: pointer;
+  transition: all 400ms !important;
+  background-color: transparent;
+  margin-inline: auto;
+  color: var(--color-default);
+  border: 2px solid var(--color-default);
+  border-radius: var(--size-200);
+  font-weight: var(--fw-bold);
+  padding: var(--size-300) var(--size-600);
+}
+
+.print-button:is(:hover, :focus-visible) {
+  color: var(--color-white);
+  background-color: var(--color-default);
+}
+
+.print-button-wrapper {
+  padding-bottom: var(--size-500);
+}
+
 *,
 *::before,
 *::after {
