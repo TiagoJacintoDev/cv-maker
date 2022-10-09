@@ -53,7 +53,7 @@
   font-weight: var(--fw-bold);
 }
 
-@media (min-width: 50em) {
+@media (min-width: 65em) {
   .flex-dsk {
     display: flex;
   }

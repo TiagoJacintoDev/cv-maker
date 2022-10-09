@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <>
-      <Header />;
+      <Header />
       <Form formData={formData} setFormData={setFormData} />
       <Display ref={displayRef} formData={formData} setFormData={setFormData} />
       <div className='print-button-wrapper'>
