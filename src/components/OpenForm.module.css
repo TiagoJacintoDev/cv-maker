@@ -1,11 +1,18 @@
 .openFormButton {
-  width: fit-content;
   cursor: pointer;
   display: flex;
   align-items: center;
   color: var(--color-default);
   background-color: white;
   border: none;
-  padding-block: var(--size-500);
-  font-size: var(--fs-600);
+  padding: var(--size-500) var(--size-600);
+  border-radius: var(--size-500);
+  overflow: hidden;
+  width: 100%;
+  margin-inline: auto;
+  font-size: var(--fs-700);
+}
+
+.forms {
+  margin-top: var(--size-700);
 }

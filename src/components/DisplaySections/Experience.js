@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { VscClose } from 'react-icons/vsc';
+import { useState } from "react";
+import { VscClose } from "react-icons/vsc";
 
 export default function Experience({ formData, formatLine, removeForm }) {
   const { experience } = formData;
@@ -15,22 +15,24 @@ export default function Experience({ formData, formatLine, removeForm }) {
   }
 
   return (
-    <div className='display-section'>
-      <div className='flex space-between align-center'>
-        <div className='display-info'>
-          <h2 className='fs-700 fw-bold'>Experience</h2>
-          <p>{role || 'Role'}</p>
+    <div className="display-section">
+      <div className="flex space-between align-center">
+        <div className="display-info">
+          <h2 className="fs-700 fw-bold uppercase text-light-blue">
+            Experience
+          </h2>
+          <p>{role || "Role"}</p>
           <p>
-            {company || 'Company'} - {city || 'City'}, {state || 'State'}
+            {company || "Company"} - {city || "City"}, {state || "State"}
           </p>
-          <p>{accomplishment || 'Accomplishments'}</p>
+          <p>{accomplishment || "Accomplishments"}</p>
         </div>
         <p>
-          {from || 'From'} - {to || 'To'}
+          {from || "From"} - {to || "To"}
         </p>
       </div>
       <ul
-        className='list'
+        className="list"
         onMouseEnter={() => setCanRemove(true)}
         onMouseLeave={() => setCanRemove(false)}
       >
@@ -38,15 +40,15 @@ export default function Experience({ formData, formatLine, removeForm }) {
           (exp, index) =>
             index > 1 && (
               <li
-                className='flex align-center gap-small'
+                className="flex align-center gap-small"
                 onClick={removeForm}
-                data-name='experience'
+                data-name="experience"
                 data-key={index}
               >
                 {Object.values(exp).map((Exp, index) =>
                   index !== 0 ? formatLine(Exp) : Exp
                 )}
-                <VscClose className='svg' data-visible={canRemove} />
+                <VscClose className="svg" data-visible={canRemove} />
               </li>
             )
         )}

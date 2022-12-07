@@ -1,9 +1,8 @@
-import Header from './components/Header';
-import Form from './components/OpenForm';
-import { Display } from './components/Display';
-import { useRef, useState } from 'react';
-import { useReactToPrint } from 'react-to-print';
-import { AiOutlinePrinter } from 'react-icons/ai';
+import GroupedForms from "./components/GroupedForms";
+import { Display } from "./components/Display";
+import { useRef, useState } from "react";
+import { useReactToPrint } from "react-to-print";
+import { AiOutlinePrinter } from "react-icons/ai";
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -17,18 +16,23 @@ export default function App() {
   const handlePrint = useReactToPrint({ content: () => displayRef.current });
 
   return (
-    <>
-      <Header />
-      <Form formData={formData} setFormData={setFormData} />
-      <Display ref={displayRef} formData={formData} setFormData={setFormData} />
-      <div className='print-button-wrapper'>
-        <button
-          className='print-button flex align-center gap-small'
-          onClick={handlePrint}
-        >
-          Print CV <AiOutlinePrinter size={20} />
-        </button>
+    <div className="container even-columns gap-small">
+      <GroupedForms formData={formData} setFormData={setFormData} />
+      <div>
+        <Display
+          ref={displayRef}
+          formData={formData}
+          setFormData={setFormData}
+        />
+        <div className="print-button-wrapper">
+          <button
+            className="print-button flex align-center gap-small"
+            onClick={handlePrint}
+          >
+            Print CV <AiOutlinePrinter size={20} />
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

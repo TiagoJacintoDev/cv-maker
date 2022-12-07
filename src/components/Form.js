@@ -1,53 +1,52 @@
-import { upperFirst, split, camelCase } from 'lodash';
-import { MdOutlineLibraryAdd } from 'react-icons/md';
-import { VscTrash } from 'react-icons/vsc';
+import { upperFirst, split, camelCase } from "lodash";
+import { MdOutlineLibraryAdd } from "react-icons/md";
+import { VscTrash } from "react-icons/vsc";
 
 export default function Form({ formData, formName, setFormData }) {
-  console.log(formData);
   const formInputs = [
     {
-      name: 'general',
+      name: "general",
       inputs: [
-        'first-name',
-        'last-name',
-        'occupation',
-        'phone',
-        'email',
-        'github',
-        'linkedin',
+        "first-name",
+        "last-name",
+        "occupation",
+        "phone",
+        "email",
+        "github",
+        "linkedin",
       ],
     },
     {
-      name: 'experience',
+      name: "experience",
       inputs: [
-        'company',
-        'role',
-        'city',
-        'state',
-        'from',
-        'to',
-        'accomplishment',
+        "company",
+        "role",
+        "city",
+        "state",
+        "from",
+        "to",
+        "accomplishment",
       ],
     },
     {
-      name: 'skills',
-      inputs: ['skill'],
+      name: "skills",
+      inputs: ["skill"],
     },
     {
-      name: 'education',
+      name: "education",
       inputs: [
-        'school-name',
-        'degree',
-        'city',
-        'state',
-        'from',
-        'to',
-        'achievements',
+        "school-name",
+        "degree",
+        "city",
+        "state",
+        "from",
+        "to",
+        "achievements",
       ],
     },
   ];
 
-  const currentForm = formInputs.find(form => form.name === formName);
+  const currentForm = formInputs.find((form) => form.name === formName);
 
   function getInputValue(inputName) {
     const formArray = formData[currentForm.name];
@@ -55,7 +54,7 @@ export default function Form({ formData, formName, setFormData }) {
   }
 
   function changeFormInputValue(e) {
-    setFormData(oldFormData => ({
+    setFormData((oldFormData) => ({
       ...oldFormData,
       [currentForm.name]: oldFormData[currentForm.name].map((form, index) => {
         return index === 0
@@ -67,52 +66,51 @@ export default function Form({ formData, formName, setFormData }) {
 
   function clearInputs(e) {
     e.preventDefault();
-    e.target.childNodes.forEach(children => (children.value = ''));
+    e.target.childNodes.forEach((children) => (children.value = ""));
   }
 
   function addForm() {
-    setFormData(oldFormData => ({
+    setFormData((oldFormData) => ({
       ...oldFormData,
       [currentForm.name]: [{}, ...oldFormData[currentForm.name]],
     }));
   }
 
   function removeAllForms() {
-    setFormData(oldFormData => ({
+    setFormData((oldFormData) => ({
       ...oldFormData,
       [currentForm.name]: [{}],
     }));
   }
 
-  const formsHaveAddButton = ['experience', 'skills', 'education'];
+  const formsHaveAddButton = ["experience", "skills", "education"];
   return (
-    <form className='long-form' onSubmit={clearInputs}>
-      {currentForm.inputs.map(inputName => (
+    <form className="long-form" onSubmit={clearInputs}>
+      {currentForm.inputs.map((inputName) => (
         <input
-          className='input'
-          type='text'
+          className="input"
+          type="text"
           value={getInputValue(inputName)}
           onChange={changeFormInputValue}
           name={inputName}
           placeholder={upperFirst(
-            split(inputName, '-').toString().replace(',', ' ')
+            split(inputName, "-").toString().replace(",", " ")
           )}
         />
       ))}
       {formsHaveAddButton.includes(currentForm.name) && (
-        <>
-          <button onClick={addForm} className='button' data-type='add'>
-            <MdOutlineLibraryAdd size={20} /> Add{' '}
-            {currentForm.inputs[currentForm.inputs.length - 1]}
+        <div className="flex gap-small">
+          <button onClick={addForm} className="button" data-type="add">
+            <MdOutlineLibraryAdd size={20} /> Add
           </button>
           <button
             onClick={removeAllForms}
-            className='button'
-            data-type='delete'
+            className="button"
+            data-type="delete"
           >
             <VscTrash size={20} /> Remove All
           </button>
-        </>
+        </div>
       )}
     </form>
   );
