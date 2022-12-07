@@ -1,18 +1,26 @@
 import { useState } from "react";
-import { VscClose } from "react-icons/vsc";
+import { DisplayExperience } from "../../data/displayData";
+import DeleteEntryComponent from "../DeleteEntryComponent";
 
-export default function Experience({ formData, formatLine, removeForm }) {
-  const { experience } = formData;
-  const [canRemove, setCanRemove] = useState(false);
+export default function Experience({
+  formDisplayData,
+  formatLine,
+  removeForm,
+}) {
+  const { experience } = formDisplayData;
+  const [canRemoveFromList, setCanRemoveFromList] = useState(false);
 
-  const { role, company, city, state, accomplishment, to, from } =
-    experience[experience[1] && !firstObjectHasValues() ? 1 : 0];
+  const { role, location, accomplishment, date } = DisplayExperience(
+    experience[experience[1] && !firstObjectHasValues(experience) ? 1 : 0]
+  );
 
-  function firstObjectHasValues() {
-    return experience.some(
-      (exp, index) => index === 0 && Object.values(exp).length > 0
+  function firstObjectHasValues(object) {
+    return object.some(
+      (value, index) => index === 0 && Object.values(value).length > 0
     );
   }
+
+  const ListItem = ({ children, ...props }) => <li {...props}>{children}</li>;
 
   return (
     <div className="display-section">
@@ -21,35 +29,30 @@ export default function Experience({ formData, formatLine, removeForm }) {
           <h2 className="fs-700 fw-bold uppercase text-light-blue">
             Experience
           </h2>
-          <p>{role || "Role"}</p>
-          <p>
-            {company || "Company"} - {city || "City"}, {state || "State"}
-          </p>
-          <p>{accomplishment || "Accomplishments"}</p>
+          {role}
+          {location}
+          {accomplishment}
         </div>
-        <p>
-          {from || "From"} - {to || "To"}
-        </p>
+        {date}
       </div>
       <ul
         className="list"
-        onMouseEnter={() => setCanRemove(true)}
-        onMouseLeave={() => setCanRemove(false)}
+        onMouseEnter={() => setCanRemoveFromList(true)}
+        onMouseLeave={() => setCanRemoveFromList(false)}
       >
         {experience.map(
           (exp, index) =>
             index > 1 && (
-              <li
+              <DeleteEntryComponent
                 className="flex align-center gap-small"
-                onClick={removeForm}
-                data-name="experience"
-                data-key={index}
-              >
-                {Object.values(exp).map((Exp, index) =>
+                handleClick={removeForm}
+                id={index}
+                name={Object.values(exp).map((Exp, index) =>
                   index !== 0 ? formatLine(Exp) : Exp
                 )}
-                <VscClose className="svg" data-visible={canRemove} />
-              </li>
+                formName="experience"
+                component={ListItem}
+              />
             )
         )}
       </ul>

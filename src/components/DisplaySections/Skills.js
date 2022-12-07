@@ -1,49 +1,35 @@
-import { VscClose } from "react-icons/vsc";
 import { useState } from "react";
 import CSS from "./DisplaySections.module.css";
+import DeleteEntryComponent from "../DeleteEntryComponent";
 
-export default function Skills({ formData, removeForm }) {
-  const { skills } = formData;
+export default function Skills({ formDisplayData, removeForm }) {
+  const { skills } = formDisplayData;
 
-  const [canRemove, setCanRemove] = useState(false);
-
-  function isObjectEmpty() {
-    return skills.some((skill) => Object.values(skill).length > 0);
+  function isObjectEmpty(object) {
+    return object.some((value) => Object.values(value).length > 0);
   }
 
-  function canInputBeDeleted() {
-    return skills.some(
-      (skill, index) => index > 0 && Object.values(skill).length > 0
-    );
-  }
+  const Button = ({ children, ...props }) => (
+    <button {...props}>{children}</button>
+  );
 
   return (
     <div className="display-section">
       <div className="display-info full-width">
         <h2 className="fs-700 fw-bold uppercase text-light-blue">Skills</h2>
-        {isObjectEmpty() && (
-          <div
-            className="flex gap-small full-width flex-wrap"
-            onMouseEnter={() => setCanRemove(true)}
-            onMouseLeave={() => setCanRemove(false)}
-          >
+        {isObjectEmpty(skills) && (
+          <div className="flex gap-small full-width flex-wrap">
             {skills.map(
               (skill, index) =>
-                skill.skill && (
-                  <button
-                    onClick={removeForm}
+                skill.name && (
+                  <DeleteEntryComponent
                     className={`${CSS.button} flex align-center gap-small`}
-                    data-name="skills"
-                    data-key={index}
-                  >
-                    {skill.skill}
-
-                    <VscClose
-                      data-visible={canRemove && canInputBeDeleted()}
-                      className="svg"
-                      size={20}
-                    />
-                  </button>
+                    handleClick={removeForm}
+                    id={index}
+                    name={skill.name}
+                    formName="skills"
+                    component={Button}
+                  />
                 )
             )}
           </div>

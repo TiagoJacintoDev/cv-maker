@@ -1,64 +1,27 @@
-import { upperFirst, split, camelCase } from "lodash";
 import { MdOutlineLibraryAdd } from "react-icons/md";
 import { VscTrash } from "react-icons/vsc";
+import { formInputs } from "../data/formInputs";
+import { parseCamelCase } from "../helpers/regexFunctions";
+import CVActionButton from "./CVActionButton";
 
-export default function Form({ formData, formName, setFormData }) {
-  const formInputs = [
-    {
-      name: "general",
-      inputs: [
-        "first-name",
-        "last-name",
-        "occupation",
-        "phone",
-        "email",
-        "github",
-        "linkedin",
-      ],
-    },
-    {
-      name: "experience",
-      inputs: [
-        "company",
-        "role",
-        "city",
-        "state",
-        "from",
-        "to",
-        "accomplishment",
-      ],
-    },
-    {
-      name: "skills",
-      inputs: ["skill"],
-    },
-    {
-      name: "education",
-      inputs: [
-        "school-name",
-        "degree",
-        "city",
-        "state",
-        "from",
-        "to",
-        "achievements",
-      ],
-    },
-  ];
-
-  const currentForm = formInputs.find((form) => form.name === formName);
+export default function Form({
+  formDisplayData,
+  formName,
+  setFormDisplayData,
+}) {
+  const selectedFormInputs = formInputs.find((form) => form.name === formName);
 
   function getInputValue(inputName) {
-    const formArray = formData[currentForm.name];
-    return formArray[0][camelCase(inputName)];
+    const currentForm = formDisplayData[formName];
+    return currentForm[0][inputName];
   }
 
   function changeFormInputValue(e) {
-    setFormData((oldFormData) => ({
-      ...oldFormData,
-      [currentForm.name]: oldFormData[currentForm.name].map((form, index) => {
+    setFormDisplayData((lastFormDisplayData) => ({
+      ...lastFormDisplayData,
+      [formName]: lastFormDisplayData[formName].map((form, index) => {
         return index === 0
-          ? { ...form, [camelCase(e.target.name)]: e.target.value }
+          ? { ...form, [e.target.name]: e.target.value }
           : form;
       }),
     }));
@@ -70,46 +33,42 @@ export default function Form({ formData, formName, setFormData }) {
   }
 
   function addForm() {
-    setFormData((oldFormData) => ({
-      ...oldFormData,
-      [currentForm.name]: [{}, ...oldFormData[currentForm.name]],
+    setFormDisplayData((lastFormDisplayData) => ({
+      ...lastFormDisplayData,
+      [formName]: [{}, ...lastFormDisplayData[formName]],
     }));
   }
 
   function removeAllForms() {
-    setFormData((oldFormData) => ({
-      ...oldFormData,
-      [currentForm.name]: [{}],
+    setFormDisplayData((lastFormDisplayData) => ({
+      ...lastFormDisplayData,
+      [formName]: [{}],
     }));
   }
 
   const formsHaveAddButton = ["experience", "skills", "education"];
   return (
     <form className="long-form" onSubmit={clearInputs}>
-      {currentForm.inputs.map((inputName) => (
+      {selectedFormInputs.inputs.map((inputName) => (
         <input
+          key={inputName}
           className="input"
           type="text"
           value={getInputValue(inputName)}
           onChange={changeFormInputValue}
           name={inputName}
-          placeholder={upperFirst(
-            split(inputName, "-").toString().replace(",", " ")
-          )}
+          placeholder={parseCamelCase(inputName)}
         />
       ))}
-      {formsHaveAddButton.includes(currentForm.name) && (
+      {formsHaveAddButton.includes(formName) && (
         <div className="flex gap-small">
-          <button onClick={addForm} className="button" data-type="add">
+          <CVActionButton handleClick={addForm} type="add">
             <MdOutlineLibraryAdd size={20} /> Add
-          </button>
-          <button
-            onClick={removeAllForms}
-            className="button"
-            data-type="delete"
-          >
+          </CVActionButton>
+
+          <CVActionButton handleClick={removeAllForms} type="delete">
             <VscTrash size={20} /> Remove All
-          </button>
+          </CVActionButton>
         </div>
       )}
     </form>

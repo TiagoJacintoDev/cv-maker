@@ -4,34 +4,38 @@ import Experience from "./DisplaySections/Experience";
 import General from "./DisplaySections/General";
 import Skills from "./DisplaySections/Skills";
 
-export const Display = forwardRef(({ formData, setFormData }, ref) => {
-  function removeForm(e) {
-    setFormData((oldFormData) => ({
-      ...oldFormData,
-      [e.target.dataset.name]: oldFormData[e.target.dataset.name].filter(
-        (form, index) => index === 0 || index !== +e.target.dataset.key
-      ),
-    }));
-  }
+export const Display = forwardRef(
+  ({ formDisplayData, setFormDisplayData }, ref) => {
+    function removeForm(e) {
+      setFormDisplayData((lastDisplayFormData) => ({
+        ...lastDisplayFormData,
+        [e.target.dataset.name]: lastDisplayFormData[
+          e.target.dataset.name
+        ].filter(
+          (form, index) => index === 0 || index !== +e.target.dataset.id
+        ),
+      }));
+    }
 
-  function formatLine(line) {
-    return line && ` | ${line}`;
-  }
+    function formatLine(line) {
+      return line && ` | ${line}`;
+    }
 
-  return (
-    <div ref={ref} className="card display-wrapper">
-      <General formData={formData} />
-      <Experience
-        removeForm={removeForm}
-        formData={formData}
-        formatLine={formatLine}
-      />
-      <Skills removeForm={removeForm} formData={formData} />
-      <Education
-        removeForm={removeForm}
-        formatLine={formatLine}
-        formData={formData}
-      />
-    </div>
-  );
-});
+    return (
+      <div ref={ref} className="card display-wrapper">
+        <General formDisplayData={formDisplayData} />
+        <Experience
+          removeForm={removeForm}
+          formDisplayData={formDisplayData}
+          formatLine={formatLine}
+        />
+        <Skills removeForm={removeForm} formDisplayData={formDisplayData} />
+        <Education
+          removeForm={removeForm}
+          formatLine={formatLine}
+          formDisplayData={formDisplayData}
+        />
+      </div>
+    );
+  }
+);

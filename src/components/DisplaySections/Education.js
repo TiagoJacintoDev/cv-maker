@@ -1,17 +1,20 @@
-import { useState } from "react";
-import { VscClose } from "react-icons/vsc";
+import { DisplayEducation } from "../../data/displayData";
+import DeleteEntryComponent from "../DeleteEntryComponent";
 
-export default function Education({ formData, formatLine, removeForm }) {
-  const [canRemove, setCanRemove] = useState(false);
-  const { education } = formData;
-  const { degree, schoolName, city, state, achievements, from, to } =
-    education[education[1] && !firstObjectHasValues() ? 1 : 0];
+export default function Education({ formDisplayData, formatLine, removeForm }) {
+  const { education } = formDisplayData;
 
-  function firstObjectHasValues() {
-    return education.some(
-      (edu, index) => index === 0 && Object.values(edu).length > 0
+  const { degree, school, achievements, date } = DisplayEducation(
+    education[education[1] && !firstObjectHasValues(education) ? 1 : 0]
+  );
+
+  function firstObjectHasValues(object) {
+    return object.some(
+      (value, index) => index === 0 && Object.values(value).length > 0
     );
   }
+
+  const ListItem = ({ children, ...props }) => <li {...props}>{children}</li>;
 
   return (
     <div className="display-section">
@@ -20,35 +23,26 @@ export default function Education({ formData, formatLine, removeForm }) {
           <h2 className="fs-700 fw-bold uppercase text-light-blue">
             Education
           </h2>
-          <p>{degree || "Degree"}</p>
-          <p>
-            {schoolName || "School Name"} - {city || "City"}, {state || "State"}
-          </p>
-          <p>{achievements || "Achievements"}</p>
+          {degree}
+          {school}
+          {achievements}
         </div>
-        <p>
-          {from || "From"} - {to || "To"}
-        </p>
+        {date}
       </div>
-      <ul
-        className="list"
-        onMouseEnter={() => setCanRemove(true)}
-        onMouseLeave={() => setCanRemove(false)}
-      >
+      <ul className="list">
         {education.map(
           (edu, index) =>
             index > 1 && (
-              <li
+              <DeleteEntryComponent
                 className="flex align-center gap-small"
-                onClick={removeForm}
-                data-name="education"
-                data-key={index}
-              >
-                {Object.values(edu).map((Edu, index) =>
+                handleClick={removeForm}
+                id={index}
+                name={Object.values(edu).map((Edu, index) =>
                   index !== 0 ? formatLine(Edu) : Edu
                 )}
-                <VscClose className="svg" data-visible={canRemove} />
-              </li>
+                formName="education"
+                component={ListItem}
+              />
             )
         )}
       </ul>
