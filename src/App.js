@@ -1,8 +1,10 @@
 import Forms from "./components/Forms";
-import { Display } from "./components/Display";
+import { Display } from "./components/View/Display";
 import { useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import PrintButton from "./components/PrintButton";
+import { useEffect } from "react";
+import { seedState } from "./seedState";
 
 export default function App() {
   const [formDisplayData, setFormDisplayData] = useState({
@@ -12,7 +14,9 @@ export default function App() {
     education: [{}],
   });
 
-  console.log(formDisplayData.skills);
+  useEffect(() => {
+    setFormDisplayData(seedState);
+  }, []);
 
   const displayRef = useRef();
   const handlePrint = useReactToPrint({ content: () => displayRef.current });

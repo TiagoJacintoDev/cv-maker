@@ -143,17 +143,24 @@
   text-transform: uppercase;
 }
 
-.even-columns {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+@media (min-width: 1250px) {
+  .even-columns {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
 }
 
 .scrollable {
   -ms-overflow-style: none;
   scrollbar-width: none;
-  height: 95vh;
   overflow: auto;
+}
+
+@media (min-width: 1250px) {
+  .scrollable {
+    height: 95vh;
+  }
 }
 
 .scrollable::-webkit-scrollbar {
@@ -208,6 +215,7 @@ button {
 
 .card {
   width: 93%;
+  margin-inline: auto;
 }
 
 .display-wrapper {
@@ -323,7 +331,6 @@ html:focus-within {
 }
 
 body {
-  overflow: hidden;
   background-color: var(--color-background);
   min-height: 100vh;
   text-rendering: optimizeSpeed;

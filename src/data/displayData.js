@@ -67,7 +67,7 @@ export const DisplayExperience = ({
     location:
       company || city || state ? (
         <p>
-          {company} - {city}, {state}
+          {company} {city && `- ${city}`} {state && `, ${state}`}
         </p>
       ) : null,
 
@@ -97,7 +97,7 @@ export const DisplayEducation = ({
     school:
       schoolName || city || state ? (
         <p>
-          {schoolName} - {city}, {state}
+          {schoolName} {city && `- ${city}`} {state && `, ${state}`}
         </p>
       ) : null,
 

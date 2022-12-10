@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
-import Education from "./DisplaySections/Education";
-import Experience from "./DisplaySections/Experience";
-import General from "./DisplaySections/General";
-import Skills from "./DisplaySections/Skills";
+import Education from "./Education";
+import Experience from "./Experience";
+import General from "./General";
+import Skills from "./Skills";
 
 export const Display = forwardRef(
   ({ formDisplayData, setFormDisplayData }, ref) => {

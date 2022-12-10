@@ -1,10 +1,8 @@
-import CSS from "./OpenForm.module.css";
+import CSS from "./OpenFormButton/OpenFormButton.module.css";
 import { useState } from "react";
-import { MdArrowRight, MdArrowDropDown } from "react-icons/md";
 import { forms } from "../data/typeOfForms";
-import { upperFirst } from "lodash";
 import Form from "./Form";
-import OpenFormButton from "./OpenFormButton";
+import OpenFormButton from "./OpenFormButton/OpenFormButton";
 
 export default function Forms({ formDisplayData, setFormDisplayData }) {
   const [openedForms, setOpenedForms] = useState([]);
